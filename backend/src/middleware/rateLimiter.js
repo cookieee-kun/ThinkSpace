@@ -12,8 +12,9 @@ const rateLimiter = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log("Rate limit error", error);
-    next(error);
+    console.error("Rate limit error:", error);
+    // Continue without rate limiting if Redis is unavailable
+    next();
   }
 };
 

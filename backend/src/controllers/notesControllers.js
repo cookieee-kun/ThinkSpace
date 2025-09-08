@@ -15,7 +15,7 @@ export const getNoteById = async (req, res) => {
 		if(!note) return res.status(404).json({message: "user does not exist!"});
 		res.status(200).json(note);
 	} catch (error){
-		res.status(500).json()({ success: false, message: "Error in getNoteById controller", error: error.message})
+	res.status(500).json({ success: false, message: "Error in getNoteById controller", error: error.message})
 	}
 };
 
@@ -34,7 +34,7 @@ export const updateNote = async (req, res) => {
 	try {
 		const { title, content} = req.body
 		const updatedNote = await Note.findByIdAndUpdate(req.params.id, { title, content }, {new: true})
-		if(!updateNote) return res.status(404).json({message: "user not found"})
+	if(!updatedNote) return res.status(404).json({message: "user not found"})
 		res.status(200).json(updatedNote)
 	} catch (error){	
 		res.status(500).json({ success: false, message: "Failed to create note, error in updateNote controller", error: error.message });
